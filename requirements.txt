@@ -1,0 +1,20 @@
+# automate download Wikipedia page
+wkhtmltopdf  # for convert HTML to PDF
+xvfb 
+urllib3     
+BeautifulSoup   
+
+#additional fonts
+fonts-thai-tlwg     #Thai fonts
+fonts-takao-mincho  #Japanese fonts
+
+tika    #for reading PDF
+polyglot #for multiple language NLP
+sklearn #for cluster
+
+#word embedding pack for polyglot
+sgns2.en
+sgns2.th
+sgns2.ja
+
+
