@@ -13,10 +13,10 @@ This project used for automatic document clustering by using Natural language pr
 * [sklearn](https://github.com/scikit-learn/scikit-learn)
 
 ## How to use
-This project has bee created on [google colab](https://colab.research.google.com), so I recommend to try on [google colab](https://colab.research.google.com) before work on a local machine.
+This project has been created on [google colab](https://colab.research.google.com), so I recommend to try on [google colab](https://colab.research.google.com) before work on a local machine.
 
 ### Create dataset
-To test the system, I create the script to automate downloading and convert the Wikipedia page into the PDF file. This script searches the keywords from [Wiki_Keywords.csv]("https://raw.githubusercontent.com/Eit-wc/Document-Clustering-/master/src/files/Wiki_Keywords.csv") and finds the link for another language (Thai and Japanese).
+To test the system, I create the script to automate downloading and convert the Wikipedia page into the PDF file. This script searches the keywords from [Wiki_Keywords.csv](https://raw.githubusercontent.com/Eit-wc/Document-Clustering-/master/src/files/Wiki_Keywords.csv) and finds the link for another language (Thai and Japanese).
 
 * Enter [1_DocumentExtraction.ipynb](https://colab.research.google.com/github/Eit-wc/Document-Clustering-/blob/master/src/1_DocumentExtraction.ipynb)
 * Mount the google drive by running the first part
@@ -33,7 +33,7 @@ To test the system, I create the script to automate downloading and convert the 
 
 # Results and discussion 
 
-After I get this assignment the time constraint is the most concern point of this project. Because of my lagging of knowledge in the NLP field, I have no time to trial and error to make the model. The best solution is using the exists library that has a pre-trained model. The goal of this project is to classify the document, Doc2Vec is the first tool that I have to select. However, there has no Doc2Vec project that has multiple language support. After research some paper[1](https://cs.stanford.edu/~quocle/paragraph_vector.pdf)[2](https://openreview.net/pdf?id=HyNbtiR9YX), I found the Word Vector Averaging has the potential to solve this problem. This information leads me to the [polyglot](https://github.com/aboSamoor/polyglot) that can get the word vector in multiple languages. Furthermore, [polyglot](https://github.com/aboSamoor/polyglot) also can detect the language.
+After I get this assignment the time constraint is the most concern point of this project. Because of my lagging of knowledge in the NLP field, I have no time to trial and error to make the model. The best solution is using the exists library that has a pre-trained model. The goal of this project is to classify the document, Doc2Vec is the first tool that I have to select. However, there has no Doc2Vec project that has multiple language support. After research some paper[[1]](https://cs.stanford.edu/~quocle/paragraph_vector.pdf) [[2]](https://openreview.net/pdf?id=HyNbtiR9YX), I found the Word Vector Averaging has the potential to solve this problem. This information leads me to the [polyglot](https://github.com/aboSamoor/polyglot) that can get the word vector in multiple languages. Furthermore, [polyglot](https://github.com/aboSamoor/polyglot) also can detect the language.
 
 ## Prepare dataset
 
@@ -52,7 +52,7 @@ To test the ability of the proposed system, I have to prepare the document. The 
 | 8 | Currency | United_States_dollar, Singapore_dollar, Japanese_yen, Thai_baht, Renminbi |
 | 9 | Businessman | Elon_Musk, Jack_Ma, Warren_Buffett, Bill_Gates, Mark_Zuckerberg |
 
-The [script]( https://github.com/Eit-wc/Document-Clustering-/blob/master/src/1_DocumentExtraction.ipynb) uses the keywords and search the Wikipedia page in English. From the English page, the script search URL for another language (Thal and Japanese). Next, all Wiki page has saved to Google Drive ("Goole Drive/Colab Notebooks/files/documents/") in PDF format. The total files is 150 files (5 [keywords] * 10 [category] * 3 [language] = 150 [files]).
+The [script]( https://github.com/Eit-wc/Document-Clustering-/blob/master/src/1_DocumentExtraction.ipynb) uses the keywords and search the Wikipedia page in English. From the English page, the script search URL for another language (Thai and Japanese). Next, all Wiki page has saved to Google Drive ("Goole Drive/Colab Notebooks/files/documents/") in PDF format. The total files is 150 files (5 [keywords] * 10 [category] * 3 [language] = 150 [files]).
 
 ## Clustering process
 
