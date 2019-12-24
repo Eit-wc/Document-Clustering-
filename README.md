@@ -253,7 +253,7 @@ The result has shown that the proposed system has the potential to group the doc
 | 13 | Bussnessman in Japanese |
 | 14 | Celebrity in English |
 
-![Data visualization](https://github.com/Eit-wc/Document-Clustering-/tree/master/src/files/Result_Graph.png)
+![Data visualization](https://raw.githubusercontent.com/Eit-wc/Document-Clustering-/master/src/files/Result_Graph.png)
 
 ## Problems and solution
 
