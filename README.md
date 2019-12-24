@@ -33,7 +33,7 @@ To test the system, I create the script to automate downloading and convert the 
 
 # Results and discussion 
 
-After I get this assignment the time constraint is the most concern point of this project. Because of my lagging of knowledge in the NLP field, I have no time to trial and error to make the model. The best solution is using the exiting library that has a pre-trained model. The goal of this project is to classify the document, Doc2Vec is the first tool that I have to select. However, there has no Doc2Vec project that has multiple language support. After research some paper[1](https://cs.stanford.edu/~quocle/paragraph_vector.pdf)[2](https://openreview.net/pdf?id=HyNbtiR9YX), I found the Word Vector Averaging has the potential to solve this problem. This information leads me to the [polyglot](https://github.com/aboSamoor/polyglot) that can get the word vector in multiple languages. Furthermore, [polyglot](https://github.com/aboSamoor/polyglot) also can detect the language.
+After I get this assignment the time constraint is the most concern point of this project. Because of my lagging of knowledge in the NLP field, I have no time to trial and error to make the model. The best solution is using the exists library that has a pre-trained model. The goal of this project is to classify the document, Doc2Vec is the first tool that I have to select. However, there has no Doc2Vec project that has multiple language support. After research some paper[1](https://cs.stanford.edu/~quocle/paragraph_vector.pdf)[2](https://openreview.net/pdf?id=HyNbtiR9YX), I found the Word Vector Averaging has the potential to solve this problem. This information leads me to the [polyglot](https://github.com/aboSamoor/polyglot) that can get the word vector in multiple languages. Furthermore, [polyglot](https://github.com/aboSamoor/polyglot) also can detect the language.
 
 ## Prepare dataset
 
@@ -253,7 +253,7 @@ The result has shown that the proposed system has the potential to group the doc
 | 13 | Bussnessman in Japanese |
 | 14 | Celebrity in English |
 
-![Data visualization](https://github.com/Eit-wc/Document-Clustering-/tree/master/src/files/Result_Graph.png)
+![Data visualization](https://raw.githubusercontent.com/Eit-wc/Document-Clustering-/master/src/files/Result_Graph.png)
 
 ## Problems and solution
 
