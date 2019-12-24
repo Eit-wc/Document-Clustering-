@@ -1,6 +1,6 @@
 # Document-Clustering
 
-This project use for automatic document clustering by using Natural language processing (NLP). This system will read all the PDF files in given folder and group them by content.
+This project used for automatic document clustering by using Natural language processing (NLP). This system will read all the PDF files in the given folder and group them by content.
 
 ## Technique
 * Word embedding
@@ -8,18 +8,18 @@ This project use for automatic document clustering by using Natural language pro
 * Affinity propagation
 
 ## Necessary package
-* tika    (for reading PDF)
-* polyglot (for multiple language NLP)
-* sklearn
+* [tika](https://github.com/chrismattmann/tika-python)    (for reading PDF)
+* [polyglot](https://github.com/aboSamoor/polyglot) (for multiple language NLP)
+* [sklearn](https://github.com/scikit-learn/scikit-learn)
 
 ## How to use
-This project has bee created on [google colab](https://colab.research.google.com), so I recommend to try on [google colab](https://colab.research.google.com) before move to local machine.
+This project has bee created on [google colab](https://colab.research.google.com), so I recommend to try on [google colab](https://colab.research.google.com) before work on a local machine.
 
 ### Create dataset
-To test the system, I create the script to automate download and convert Wikipedia page into the PDF file. This script search the keywords from [Wiki_Keywords.csv]("https://raw.githubusercontent.com/Eit-wc/Document-Clustering-/master/src/files/Wiki_Keywords.csv") and find the link for other language (Thai and Japanese).
+To test the system, I create the script to automate downloading and convert the Wikipedia page into the PDF file. This script searches the keywords from [Wiki_Keywords.csv]("https://raw.githubusercontent.com/Eit-wc/Document-Clustering-/master/src/files/Wiki_Keywords.csv") and finds the link for another language (Thai and Japanese).
 
 * Enter [1_DocumentExtraction.ipynb](https://colab.research.google.com/github/Eit-wc/Document-Clustering-/blob/master/src/1_DocumentExtraction.ipynb)
-* Mount the google drive by run first part
+* Mount the google drive by running the first part
 * Run the second part, the script will download the Wikipedia page and save the PDF files into the google drive ("Goole Drive/Colab Notebooks/files/documents/").
 
 ### run the clustering
@@ -31,11 +31,38 @@ To test the system, I create the script to automate download and convert Wikiped
 * Cluster the document by using document vector
 * The result will show on "Goole Drive/Colab Notebooks/files/result.csv"
 
-## Results and discussion 
+# Results and discussion 
 
-[TODO]
+After I get this assignment the time constraint is the most concern point of this project. Because of my lagging of knowledge in the NLP field, I have no time to trial and error to make the model. The best solution is using the exiting library that has a pre-trained model. The goal of this project is to classify the document, Doc2Vec is the first tool that I have to select. However, there has no Doc2Vec project that has multiple language support. After research some paper[1](https://cs.stanford.edu/~quocle/paragraph_vector.pdf)[2](https://openreview.net/pdf?id=HyNbtiR9YX), I found the Word Vector Averaging has the potential to solve this problem. This information leads me to the [polyglot](https://github.com/aboSamoor/polyglot) that can get the word vector in multiple languages. Furthermore, [polyglot](https://github.com/aboSamoor/polyglot) also can detect the language.
 
-|filename|language|label|
+## Prepare dataset
+
+To test the ability of the proposed system, I have to prepare the document. The [1_DocumentExtraction]( https://github.com/Eit-wc/Document-Clustering-/blob/master/src/1_DocumentExtraction.ipynb) script has been create to generate the dataset. I define the 10 categories of the document as shown in the following table.
+
+| Define group | Category | Keywords |
+| --- | --- | --- |
+| 0 | Animal | Cat, Dog, Kangaroo, Bird, Penguin |
+| 1 | Food | Hamburger, Steak, Omelette, Bacon, Sushi |
+| 2 | Country | Thailand, Singapore, France, Japan, Austalia |
+| 3 | City | London, Tokyo, Bangkok, Paris, Canberra |
+| 4 | Vehicle | Car, Motorcycle, Bicycle, Bus, Train |
+| 5 | Fruit | Berry, Avocado, Apple, Banana, Durian |
+| 6 | Movie | Star_Wars, Back_to_the_Future, The_Lion_King, The_Terminator, Toy_Story |
+| 7 | President and Prime minister | Donald_Trump, Barack_Obama, Xi_Jinping, Vladimir_Putin, Justin_Trudeau |
+| 8 | Currency | United_States_dollar, Singapore_dollar, Japanese_yen, Thai_baht, Renminbi |
+| 9 | Businessman | Elon_Musk, Jack_Ma, Warren_Buffett, Bill_Gates, Mark_Zuckerberg |
+
+The [script]( https://github.com/Eit-wc/Document-Clustering-/blob/master/src/1_DocumentExtraction.ipynb) uses the keywords and search the Wikipedia page in English. From the English page, the script search URL for another language (Thal and Japanese). Next, all Wiki page has saved to Google Drive ("Goole Drive/Colab Notebooks/files/documents/") in PDF format. The total files is 150 files (5 [keywords] * 10 [category] * 3 [language] = 150 [files]).
+
+## Clustering process
+
+To clustering the documents, I apply the Word Vector Averaging to calculate the document vector. The common clustering method is the K-Means method. However, I assume that we never know the number of clusters in this problem. For this reason, I decide to use the Affinity propagation method, because this method doesn't need the number of clusters.
+
+### Clustering result
+
+The result of language detection and document clustering has shown in the following table.
+
+|Filename|Language|Label|
 | --- | --- | --- |
 |0_Cat_ja.pdf|ja|9|
 |0_Cat_th.pdf|th|2|
@@ -188,8 +215,7 @@ To test the system, I create the script to automate download and convert Wikiped
 |8_Renminbi_en.pdf|en|12|
 |8_Thai_baht_ja.pdf|ja|11|
 
-
-|Group| Files|
+| Clustering group| Files|
 | --- | --- |
 | 0 | 2_France_en.pdf 2_Singapore_en.pdf 2_Thailand_en.pdf 3_London_en.pdf 2_Austalia_en.pdf 2_Japan_en.pdf 3_Canberra_en.pdf 3_Paris_en.pdf 3_Bangkok_en.pdf 3_Tokyo_en.pdf 7_Xi_Jinping_en.pdf 7_Vladimir_Putin_en.pdf |
 | 1 | 2_Singapore_ja.pdf 2_Thailand_ja.pdf 2_Austalia_ja.pdf 2_Japan_ja.pdf 2_France_ja.pdf |
@@ -206,3 +232,58 @@ To test the system, I create the script to automate download and convert Wikiped
 |12| 8_Thai_baht_en.pdf 8_Japanese_yen_en.pdf 8_Singapore_dollar_en.pdf 8_United_States_dollar_en.pdf 8_Renminbi_en.pdf |
 |13| 9_Mark_Zuckerberg_ja.pdf 9_Bill_Gates_ja.pdf 9_Warren_Buffett_ja.pdf 9_Jack_Ma_ja.pdf 9_Elon_Musk_ja.pdf |
 |14| 7_Barack_Obama_en.pdf 7_Donald_Trump_en.pdf 7_Justin_Trudeau_en.pdf 9_Mark_Zuckerberg_en.pdf 9_Bill_Gates_en.pdf 9_Warren_Buffett_en.pdf 9_Jack_Ma_en.pdf 9_Elon_Musk_en.pdf |
+
+The result has shown that the proposed system has the potential to group the document into the logical groups.
+
+| Clustering group | Detail |
+| --- | --- |
+| 0 | Place in English |
+| 1 | Country in Japanese |
+| 2 | ** Thai language documents ** |
+| 3 | Vehicle in English |
+| 4 | City in Japanese |
+| 5 | Vehicle in Japanese |
+| 6 | Movie in English |
+| 7 | Movie in Japanese |
+| 8 | ** Food, fruit and animal in English ** |
+| 9 | ** Food, fruit and animal in Japanese ** |
+| 10 | President and Prime minister in Japanese |
+| 11 | Currency in Japanese |
+| 12 | Currency in english |
+| 13 | Bussnessman in Japanese |
+| 14 | Celebrity in English |
+
+![Data visualization](https://github.com/Eit-wc/Document-Clustering-/tree/master/src/files/Result_Graph.png)
+
+## Problems and solution
+
+The proposed system doesn't group the document as I define but the result is reasonable. The system tries to separate the document by language. The first problem is group 2 that is all Thai documents. This problem caused by the word's vector in a different language gives a different vector as shown in the following. The "dog" in Thai and Japanese give a farther than the "cat" in the same language. I believe this problem can solve by cluster the document by separate language. The other solution is to try to translate the non-English language into English before calculate the word vector.
+
+```
+dog_en = Word('dog','en').vector
+cat_en = Word('cat','en').vector
+dog_th = Word('หมา','th').vector
+dog_ja = Word('犬','ja').vector
+
+dist_en2th = np.linalg.norm(dog_en-dog_th)
+dist_en2ja = np.linalg.norm(dog_en-dog_ja)
+dist_ja2th = np.linalg.norm(dog_th-dog_ja)
+dist_cat2dog = np.linalg.norm(cat_en-dog_en)
+
+print(f'Vector distance dog_en -> dog_th = {dist_en2th}')
+print(f'Vector distance dog_en -> dog_ja = {dist_en2ja}')
+print(f'Vector distance dog_ja -> dog_th = {dist_ja2th}')
+print(f'\nVector distance cat_en -> dog_en = {dist_cat2dog}')
+```
+
+output
+
+```
+Vector distance dog_en -> dog_th = 33.494232177734375
+Vector distance dog_en -> dog_ja = 40.79993438720703
+Vector distance dog_ja -> dog_th = 24.6937255859375
+
+Vector distance cat_en -> dog_en = 15.844327926635742
+```
+
+The other problem is groups 8 and 9 because the vector distance of three categories (food, fruit, and animal) is shorter than another category. I believe after separate the document by language and apply the vector normalize for each language the vector of these three categories will have more space to classify. 
